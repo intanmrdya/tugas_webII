@@ -10,6 +10,18 @@
                     @csrf
                     
                     <div class="mb-3">
+                        <label for="category_id" class="form-label">Kategori Barang</label>
+                        <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="mb-3">
                         <label for="kode_barang" class="form-label">Kode Barang</label>
                         <input type="text" name="kode_barang" id="kode_barang" class="form-control @error('kode_barang') is-invalid @enderror" value="{{ old('kode_barang') }}">
                         @error('kode_barang') <div class="invalid-feedback">{{ $message }}</div> @enderror

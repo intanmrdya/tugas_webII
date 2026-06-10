@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -56,5 +57,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     
     // 2. BARIS BARU: Route untuk Management Customers
     Route::resource('customers', CustomerController::class);
+
+});
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('customers', CustomerController::class);
+    
+    // 2. BARIS BARU: Route untuk Management Categories
+    Route::resource('categories', CategoryController::class);
 
 });

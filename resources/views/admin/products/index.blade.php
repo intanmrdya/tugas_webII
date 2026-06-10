@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Barang</th>
+                        <th>Kategori</th> <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Satuan</th>
                         <th>Harga</th>
@@ -24,6 +24,7 @@
                     @forelse($products as $key => $product)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $product->category->nama_kategori ?? '-' }}</td> 
                             <td>{{ $product->kode_barang }}</td>
                             <td>{{ $product->nama_barang }}</td>
                             <td>{{ $product->satuan }}</td>
@@ -31,8 +32,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">Belum ada data produk.</td>
-                        </tr>
+                            <td colspan="6" class="text-center">Belum ada data produk.</td> </tr>
                     @endforelse
                 </tbody>
             </table>
